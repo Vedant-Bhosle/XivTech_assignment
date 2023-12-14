@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function App() {
+  const { REACT_APP_API } = process.env;
+  console.log(REACT_APP_API);
+
   const [cityInput, setCityInput] = useState("");
   const [cities, setCities] = useState([]);
   const [weatherResults, setWeatherResults] = useState(null);
@@ -15,7 +18,7 @@ function App() {
 
   const handleGetWeather = async () => {
     try {
-      const response = await axios.post("http://localhost:5001/getWeather", {
+      const response = await axios.post(`${REACT_APP_API}getWeather`, {
         cities,
       });
       console.log(response.data.weather);
